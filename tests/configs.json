@@ -1,0 +1,24 @@
+{
+	"common_att": {
+		"output_path": "./outputs",
+		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+	},
+	"dataloader_train": {
+		"batch_size": 4,
+		"shuffle": true,
+		"num_workers": 2
+	},
+	"dataloader_test": {
+		"batch_size": 4,
+		"shuffle": false,
+		"num_workers": 2
+	},
+	"oversizeCNN": {
+		"lr": 0.001,
+		"momentum": 0.9
+	},
+	"simpleCNN": {
+		"lr": 0.001,
+		"momentum": 0.9
+	}
+}

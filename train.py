@@ -32,12 +32,14 @@ def train_model(model, dataloader_train):
                 logger.info(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
                 running_loss = 0.0
         logger.info(f'Finished training epoch {epoch}')
-        # TODO add breakpoint
-
+        # checkpoint
+        if epoch % 2 == 0:
+            torch.save({'epoch': epoch, 'model_state_dict': model.state_dict(),
+                        'optimizer_state_dict': optimizer.state_dict(), 'loss': running_loss
+                        }, f'{model.name}_{epoch}.pt')
     logger.info(f'Finished training {model.name}')
     return model
 
 
 def load_model(model, model_path, images):
     model.load_state_dict(torch.load(model_path))
-    outputs = model(images)

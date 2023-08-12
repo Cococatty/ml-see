@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime
 from time import process_time
+import click
 # local modules
 from utils import set_check_device
 from data_operations import data_loader, performance_check
@@ -14,6 +15,13 @@ logger = logging.getLogger('process_log')
 ch = logging.StreamHandler()
 ch.setLevel(logging.INFO)
 logger.addHandler(ch)
+
+
+
+@click.command()
+@click.option('--models_list', type=str, help='List of models to run')
+def compile_processes(models_list):
+    print('Test')
 
 
 def compile_simple_cnn_model():

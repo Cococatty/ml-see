@@ -14,8 +14,8 @@ class CNN(nn.Module):
         # add basic attributes
         self.name = name
         # load relevant configs from file
-        self.hyperparams = load_json('configs.json')[name]
         self.common_attr = load_json('configs.json')['common_att']
+        self.hyperparams = load_json('configs.json')[name]
         logger.info(f'{name} model is created')
 
     def calc_total_num_params(self):
@@ -53,3 +53,6 @@ class SimpleCNN(CNN):
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
         return x
+
+# def inference():
+#     outputs = model(images)

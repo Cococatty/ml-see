@@ -35,7 +35,7 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 ### LEVEL 2
 
 -[ ] Optimization:
-    -[ ]  high accuracy 
+    -[ ] high accuracy 
     -[ ] a small model size
     -[ ] must contain less than 1 million parameters
 -[ ] model performance analysis:
@@ -82,7 +82,7 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[x] modularize the entire project
 -[x] time the processes
 -[x] add logger
--[ ] add breakpoint (if training time exceeds 5min)
+-[x] add checkpoint
 -[ ] clear objects that are no longer required
 -[ ] use/convert to uint8 for models
 -[x] validation: parameters size ≤ 1 million
@@ -95,3 +95,4 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[ ] code format
 -[ ] sufficient documentation, docstring, comments
 -[ ] clear all items in each level
+-[ ] is checkpoint still required for training lasts less than 5min)
