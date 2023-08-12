@@ -1,0 +1,8 @@
+# entire directory
+.idea
+__pycache__
+# virtual environment
+/venv_see/
+# by file extension
+*pdf
+*log
