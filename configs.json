@@ -1,4 +1,8 @@
 {
+	"common_att": {
+		"output_path": "./outputs",
+		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+	},
 	"dataloader_train": {
 		"batch_size": 4,
 		"shuffle": true,
@@ -8,10 +12,6 @@
 		"batch_size": 4,
 		"shuffle": false,
 		"num_workers": 2
-	},
-	"common_att": {
-		"output_path": "./outputs",
-		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 	},
 	"simpleCNN": {
 		"lr": 0.001,

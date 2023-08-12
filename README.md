@@ -1,6 +1,7 @@
 # About this Repository
 - train.py:  trains the target model from scratch and saves it to a file
 - test.py: tests the generated model
+- .py: tests the generated model
 
 # About the Model and Structure
 
@@ -26,11 +27,19 @@ python3 -m venv venv_see
 source venv_see/bin/activate
 # install dependencies
 pip3 install -r requirements.txt
-
 ```
 
 # How to Run
 
 ```
+# activate the virtual environment
+source venv_see/bin/activate
 python3 main.py
 ```
+OR
+```
+venv_see/bin/python3 main.py
+```
+## Compiling Results
+
+# Model Performance

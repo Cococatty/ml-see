@@ -1,17 +1,18 @@
+import logging
 import unittest
 import os
 import sys
 from pathlib import Path
+# project modules
+from utils import load_json
+
 FILE = Path(__file__).resolve()
 test_dir = FILE.parents[0]
 project_dir = FILE.parents[1]
 sys.path.append(str(project_dir))
 sys.path.append(str(test_dir))
 os.chdir(test_dir)
-import logging
 logger = logging.getLogger('unittest_log')
-# project modules
-from utils import load_json
 
 
 class TestUtilities(unittest.TestCase):

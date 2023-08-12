@@ -1,11 +1,11 @@
 import logging
-logger = logging.getLogger('process_log')
 import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 # local modules
 from utils import load_json
+logger = logging.getLogger('process_log')
 
 
 class CNN(nn.Module):
@@ -19,6 +19,7 @@ class CNN(nn.Module):
         logger.info(f'{name} model is created')
 
     def save_model(self):
+        os.makedirs(self.common_attr['output_path'], exist_ok=True)
         output_path = os.path.join(self.common_attr['output_path'], self.name+'.pth')
         torch.save(self.state_dict(), output_path)
         logger.info(f'{self.name} model is saved to file: {output_path}')

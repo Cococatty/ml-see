@@ -1,14 +1,13 @@
 import logging
-logger = logging.getLogger('process_log')
 import torch
 import torch.nn as nn
+logger = logging.getLogger('process_log')
 
 
 def train_model(model, dataloader_train):
     import torch.optim as optim
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=model.hyperparams['lr'], momentum=model.hyperparams['momentum'])
-    # criterion = nn.CrossEntropyLoss()
 
     logger.info(f'Start to train {model.name}')
 
@@ -42,7 +41,3 @@ def train_model(model, dataloader_train):
 def load_model(model, model_path, images):
     model.load_state_dict(torch.load(model_path))
     outputs = model(images)
-
-# net.to(device)
-# inputs, labels = data[0].to(device), data[1].to(device)
-# del dataiter
