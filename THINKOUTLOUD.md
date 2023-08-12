@@ -82,10 +82,10 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[x] modularize the entire project
 -[x] time the processes
 -[x] add logger
--[ ] add breakpoint
+-[ ] add breakpoint (if training time exceeds 5min)
 -[ ] clear objects that are no longer required
 -[ ] use/convert to uint8 for models
--[ ] validation: parameters size ≤ 1 million
+-[x] validation: parameters size ≤ 1 million
 -[ ] validation: inference time ≤ 20ms on a single CPU thread
 
 # Completion Checklist

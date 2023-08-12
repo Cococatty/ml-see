@@ -1,6 +1,7 @@
 # entire directory
 .idea
 __pycache__
+outputs
 # virtual environment
 /venv_see/
 # by file extension

@@ -19,9 +19,11 @@ logger.addHandler(ch)
 def compile_simple_cnn_model():
     dataloader_train, dataloader_test = data_loader()
     cnn = SimpleCNN()
+    print('calc_total_num_params', cnn.calc_total_num_params())
     # the reason to separate train() from model is to enable multiple models comparisons
     train_model(cnn, dataloader_train)
     cnn.save_model()
+    # TODO: inference time ≤ 20ms on a single CPU thread
     performance_check(dataloader_test=dataloader_test, model=cnn)
 
 

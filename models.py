@@ -18,6 +18,15 @@ class CNN(nn.Module):
         self.common_attr = load_json('configs.json')['common_att']
         logger.info(f'{name} model is created')
 
+    def calc_total_num_params(self):
+        total_params = sum(p.numel() for p in self.parameters())
+        if total_params > 1000000:
+            logger.error(f'Model {self.name} parameters size ({total_params}) > 1 million')
+            raise ValueError(f'Model {self.name} parameters size ({total_params}) > 1 million')
+        else:
+            logger.info(f'Model {self.name} parameters size is {total_params}')
+        return total_params
+
     def save_model(self):
         os.makedirs(self.common_attr['output_path'], exist_ok=True)
         output_path = os.path.join(self.common_attr['output_path'], self.name+'.pth')
