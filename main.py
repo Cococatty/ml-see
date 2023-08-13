@@ -6,7 +6,7 @@ import click
 from utils import set_check_device
 from data_operations import data_loader, performance_check
 from train import train_model
-from models import SimpleCNN
+from models import SimpleCNN, save_model
 # create logger
 logging.basicConfig(filename='compilation_log.log', format='%(asctime)s - %(levelname)s - %(message)s',
                     encoding='utf-8', level=logging.INFO)
@@ -15,7 +15,6 @@ logger = logging.getLogger('process_log')
 ch = logging.StreamHandler()
 ch.setLevel(logging.INFO)
 logger.addHandler(ch)
-
 
 
 @click.command()
@@ -27,11 +26,9 @@ def compile_processes(models_list):
 def compile_simple_cnn_model():
     dataloader_train, dataloader_test = data_loader()
     cnn = SimpleCNN()
-    print('calc_total_num_params', cnn.calc_total_num_params())
     # the reason to separate train() from model is to enable multiple models comparisons
     train_model(cnn, dataloader_train)
-    cnn.save_model()
-    # TODO: inference time ≤ 20ms on a single CPU thread
+    save_model(cnn)
     performance_check(dataloader_test=dataloader_test, model=cnn)
 
 
@@ -46,4 +43,4 @@ if __name__ == '__main__':
     t_simple_cnn_stop = process_time()
     end_time = datetime.now()
     logger.info(f'Elapsed time for Simple CNN compilation in seconds: {t_simple_cnn_stop-t_start}')
-    logger.info('#########     Process is completed successfully     ##########\n')
+    logger.info('#########     Process completes successfully     ##########\n')

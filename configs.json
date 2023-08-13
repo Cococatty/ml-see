@@ -1,7 +1,9 @@
 {
 	"common_att": {
 		"output_path": "./outputs",
-		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
+		"training_output_file": "outputs/training_result.txt",
+		"performance_file": "outputs/models_performances_tables.txt"
 	},
 	"dataloader_train": {
 		"batch_size": 4,
