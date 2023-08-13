@@ -58,10 +58,10 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 2. -[x] Set up possibly required modules, Sat
 3. -[x] Start documenting, Sat
 4. -[x] First draft, Sat
-5. -[ ] Research and determine the model architecture, Sun
-6. -[ ] Design the model architecture, Sun
-7. -[ ] Build the desired model, Sun
-8. -[ ] Compile the model and ensure it works (level 1 completes), Sun
+5. -[x] Research and determine the model architecture, Sun
+6. -[x] Design the model architecture, Sun
+7. -[x] Build the desired model, Sun
+8. -[x] Compile the model and ensure it works (level 1 completes), Sun
 9. -[ ] Optimization (level 2 starts), Sun
 10. -[ ] Detailed performance analysis, Sun
 11. -[ ] Finalize documentation, Mon
@@ -91,6 +91,7 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[ ] use/convert to uint8 for models
 
 # Completion Checklist
+-[ ] gh - README table of content
 -[ ] essential unit tests
 -[ ] remove unused dependencies
 -[ ] no comment-out code

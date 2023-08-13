@@ -15,7 +15,19 @@
 		"shuffle": false,
 		"num_workers": 2
 	},
+	"exampleCNN": {
+		"lr": 0.001,
+		"momentum": 0.9
+	},
 	"simpleCNN": {
+		"lr": 0.001,
+		"momentum": 0.9
+	},
+	"cifar": {
+		"lr": 0.001,
+		"momentum": 0.9
+	},
+	"uint8model": {
 		"lr": 0.001,
 		"momentum": 0.9
 	}

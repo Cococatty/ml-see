@@ -8,11 +8,15 @@ import torchvision
 import torchvision.transforms as transforms
 from utils import load_json
 logger = logging.getLogger('process_log')
+result_sep = '\n'
 
 
 def data_loader(config=load_json('configs.json')):
     transform = transforms.Compose([
+        # transforms.Grayscale(num_output_channels=1),
+        # transforms.RandomCrop(size=16),
         transforms.ToTensor(),
+        # transforms.Normalize((0.5,), (0.5,))])
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
     data_train = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
@@ -31,14 +35,19 @@ def data_loader(config=load_json('configs.json')):
     return dataloader_train, dataloader_test
 
 
+def calculate_confusion_matrix(correct: int, total: int) -> str:
+    correct // total
+    str_confusion_matrix = f'| model name | num of images | class_name | accuracy |{result_sep}' \
+                 f'| :---- | :---- | :---- | :---- |{result_sep}'
+
+    return
+
 def performance_check(dataloader_test, model):
     classes = model.common_attr['classes']
-    result_sep = '\n'
     result_str = f'{result_sep}Execution Timestamp: {datetime.now()}{result_sep}{result_sep}' \
                  f'| model name | num of images | class_name | accuracy |{result_sep}' \
                  f'| :---- | :---- | :---- | :---- |{result_sep}'
     correct, total = 0, 0
-    # since we're not training, we don't need to calculate the gradients for our outputs
     with torch.no_grad():
         for data in dataloader_test:
             images, labels = data
@@ -56,7 +65,6 @@ def performance_check(dataloader_test, model):
     correct_pred = {class_name: 0 for class_name in classes}
     total_pred = {class_name: 0 for class_name in classes}
     
-    # again no gradients needed
     with torch.no_grad():
         for data in dataloader_test:
             images, labels = data
@@ -74,6 +82,7 @@ def performance_check(dataloader_test, model):
         logger.info(f'Accuracy for class: {class_name:5s} is {accuracy:.1f}%')
         result_str = result_str + f'|{model.name}|{total_pred[class_name]}|{class_name:5s}|{accuracy:.2f}%|{result_sep}'
 
+    result_str = result_str + result_sep + str(model) + result_sep
     # export performance in table format
     result_file = model.common_attr['performance_file']
     with open(result_file, 'a') as file:

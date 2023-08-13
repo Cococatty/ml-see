@@ -59,6 +59,12 @@ venv_see/bin/python3 main.py
 - Architecture: [Description of model architecture]
 - Number of Parameters: [Total number of model parameters]
 
+
+https://www.researchgate.net/figure/Ball-chart-reporting-the-Top-1-and-Top-5-accuracy-vs-computational-complexity-Top-1-and_fig1_328509150
+
+ResNet50 architecture
+https://www.researchgate.net/figure/The-framework-of-the-Resnet50-The-Resnet50-model-trained-on-ImageNet-which-is_fig3_344190091
+
 ## Training Details
 
 - Training Duration: [Training duration]

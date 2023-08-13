@@ -6,7 +6,7 @@ import click
 from utils import set_check_device
 from data_operations import data_loader, performance_check
 from train import train_model
-from models import SimpleCNN, save_model
+from models import save_model, CurrentCNN, SimpleCNN, TestCNN
 # create logger
 logging.basicConfig(filename='compilation_log.log', format='%(asctime)s - %(levelname)s - %(message)s',
                     encoding='utf-8', level=logging.INFO)
@@ -18,18 +18,20 @@ logger.addHandler(ch)
 
 
 @click.command()
-@click.option('--models_list', type=str, help='List of models to run')
-def compile_processes(models_list):
-    print('Test')
-
-
-def compile_simple_cnn_model():
+@click.option('--model_name', type=str, default='simpleCNN', help='Name of model to run')
+def compile_selected_cnn_model(model_name):
     dataloader_train, dataloader_test = data_loader()
-    cnn = SimpleCNN()
+    if model_name == 'currentCNN':
+        model = CurrentCNN()
+    elif model_name == 'test':
+        model = TestCNN()
+    else:
+        model = SimpleCNN()
+
     # the reason to separate train() from model is to enable multiple models comparisons
-    train_model(cnn, dataloader_train)
-    save_model(cnn)
-    performance_check(dataloader_test=dataloader_test, model=cnn)
+    train_model(model, dataloader_train)
+    save_model(model)
+    performance_check(dataloader_test, model)
 
 
 if __name__ == '__main__':
@@ -38,7 +40,7 @@ if __name__ == '__main__':
     t_start = process_time()
     logger.info('\n##########     A new process has started     ##########')
     set_check_device()
-    compile_simple_cnn_model()
+    compile_selected_cnn_model()
     # finish all process and end the timer
     t_simple_cnn_stop = process_time()
     end_time = datetime.now()
