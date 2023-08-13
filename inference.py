@@ -21,6 +21,17 @@ ch.setLevel(logging.INFO)
 logger.addHandler(ch)
 
 
+@click.command()
+@click.option('--model_file', type=str, default='outputs/simpleCNN.pth', help='Name of model to run')
+@click.option('--avg_sec', type=int, default=20, help='Average inference time threshold per image in ms')
+def run_inference(model_file, avg_sec, input_data):
+    """Run inference within a single thread"""
+    model = torch.load(model_file)
+    thread = threading.Thread(target=single_threaded_inference, args=(model, input_data, avg_sec))
+    thread.start()
+    thread.join()
+
+
 def model_inference(model, dataloder_data, avg_sec=20):
     # evaluation mode has no dropout, batch normalization, etc.
     model.eval()
@@ -28,10 +39,8 @@ def model_inference(model, dataloder_data, avg_sec=20):
     with torch.no_grad():
         start_time = process_time()
         for i, data in enumerate(dataloder_data, 0):
-            # get the inputs; data is a list of [inputs, labels]
             inputs, labels = data
             _ = model(inputs)
-        # end_time = time.time()
         end_time = process_time()
         elapsed_time = end_time - start_time
         # criteria: average inference time per image ≤ 20ms on a single CPU thread
@@ -54,22 +63,14 @@ def single_threaded_inference(model, input_data, avg_sec=20):
         logger.exception(f'Exceed allowed average inference time per image: {avg_sec}')
 
 
-def run_inference(input_data, avg_sec):
-    """Run inference within a single thread"""
-    cnn = torch.load('outputs/simpleCNN.pth')
-    thread = threading.Thread(target=single_threaded_inference, args=(cnn, input_data, avg_sec))
-    thread.start()
-    thread.join()
-
-
 if __name__ == '__main__':
     # enable the timer to measure operation time
     logger.info('\n##########     A new process has started     ##########')
     t_start = process_time()
     set_check_device()
-    dataloader_train, dataloader_test = data_loader()
+    _, _, _, dataloader_test = data_loader()
     t_inf_start = process_time()
-    run_inference(dataloader_test, avg_sec=20)
+    run_inference(dataloader_test)
     # finish all process and end the timer
     t_stop = process_time()
     logger.info(f'Elapsed time for inference: {t_stop-t_inf_start:.2f} sec')

@@ -59,11 +59,23 @@ venv_see/bin/python3 main.py
 - Architecture: [Description of model architecture]
 - Number of Parameters: [Total number of model parameters]
 
+Models performances comparison fetch from https://www.researchgate.net/figure/Ball-chart-reporting-the-Top-1-and-Top-5-accuracy-vs-computational-complexity-Top-1-and_fig1_328509150
 
-https://www.researchgate.net/figure/Ball-chart-reporting-the-Top-1-and-Top-5-accuracy-vs-computational-complexity-Top-1-and_fig1_328509150
+![Models performances comparison](doc_imgs/Ball-chart-reporting-the-Top-1-and-Top-5-accuracy-vs-computational-complexity-Top-1-and.png)
 
-ResNet50 architecture
-https://www.researchgate.net/figure/The-framework-of-the-Resnet50-The-Resnet50-model-trained-on-ImageNet-which-is_fig3_344190091
+ResNet50 architecture, fetched from https://www.researchgate.net/figure/The-framework-of-the-Resnet50-The-Resnet50-model-trained-on-ImageNet-which-is_fig3_344190091  
+
+![ResNet50 architecture](doc_imgs/The-framework-of-the-Resnet50-The-Resnet50-model-trained-on-ImageNet-which-is.png)
+
+YOLO architecture, fetch from https://www.researchgate.net/figure/YOLO-network-architecture-adapted-from-44_fig1_330484322
+
+![YOLO architecture](doc_imgs/YOLO-network-architecture-adapted-from-44.png)
+
+VGG16 architecture, fetch from https://neurohive.io/en/popular-networks/vgg16/
+
+![VGG16 architecture](doc_imgs/vgg16.png)
+
+[//]: # (https://deci.ai/blog/close-gap-cpu-performance-gpu-deep-learning-models/)
 
 ## Training Details
 

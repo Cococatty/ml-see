@@ -3,7 +3,8 @@
 		"output_path": "./outputs",
 		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
 		"training_output_file": "outputs/training_result.txt",
-		"performance_file": "outputs/models_performances_tables.txt"
+		"performance_file": "outputs/models_performances_tables.txt",
+		"cm_file": "outputs/confusion_matrix.txt"
 	},
 	"dataloader_train": {
 		"batch_size": 4,
@@ -15,15 +16,11 @@
 		"shuffle": false,
 		"num_workers": 2
 	},
-	"exampleCNN": {
-		"lr": 0.001,
-		"momentum": 0.9
-	},
 	"simpleCNN": {
 		"lr": 0.001,
 		"momentum": 0.9
 	},
-	"cifar": {
+	"testCNN": {
 		"lr": 0.001,
 		"momentum": 0.9
 	},

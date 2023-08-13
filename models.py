@@ -30,6 +30,22 @@ class CNN(nn.Module):
         return total_params
 
 
+class uintCNN(CNN):
+    # TODO use int8
+    def __init__(self):
+        super().__init__(name='uint8model')
+        # Define layers with uint8 parameters
+        self.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, stride=1, padding=1, dtype=torch.uint8)
+        self.fc1 = nn.Linear(64 * 32 * 32, 10, dtype=torch.uint8)
+
+    def forward(self, x):
+        x = self.conv1(x)
+        x = F.relu(x)
+        x = x.view(x.size(0), -1)
+        x = self.fc1(x)
+        return x
+
+
 def save_model(model, output_path=None):
     if output_path is None:
         output_path = model.common_attr['output_path']
@@ -47,31 +63,6 @@ def convert_to_uint8(model):
     for param in model.parameters():
         param.data = param.data.to(torch.uint8)  # Convert parameter data to uint8
     return model
-
-
-class CurrentCNN(CNN):
-    def __init__(self):
-        super().__init__(name='currentCNN')
-        # hidden layers
-        self.conv1 = nn.Conv2d(3, 6, 5)
-        self.pool = nn.MaxPool2d(2, 2)
-        self.conv2 = nn.Conv2d(6, 16, 5)
-        # fully connected layers
-        self.fc1 = nn.Linear(16 * 5 * 5, 120)
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)
-
-    def forward(self, x):
-        # features extraction
-        x = self.pool(F.relu(self.conv1(x)))
-        x = self.pool(F.relu(self.conv2(x)))
-        # flatten layer
-        x = torch.flatten(x, 1)
-        # fully connected layers
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
-        return x
 
 
 class SimpleCNN(CNN):
@@ -104,32 +95,19 @@ class TestCNN(CNN):
         self.conv1 = nn.Conv2d(3, 32, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
         self.conv3 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
-        self.pool = nn.MaxPool2d(2, 2)
+        self.pool_max = nn.MaxPool2d(2, 2)
+        self.pool_avg = nn.AvgPool2d(2, 2)
         # fully connected layers
         self.fc1 = nn.Linear(128 * 4 * 4, 512)
         self.fc2 = nn.Linear(512, 10)
         self.dropout = nn.Dropout(0.5)
 
     def forward(self, x):
-        x = self.pool(F.relu(self.conv1(x)))
-        x = self.pool(F.relu(self.conv2(x)))
-        x = self.pool(F.relu(self.conv3(x)))
+        x = self.pool_max(F.relu(self.conv1(x)))
+        x = self.pool_max(F.relu(self.conv2(x)))
+        x = self.pool_max(F.relu(self.conv3(x)))
         x = x.view(x.size(0), -1)
         x = self.dropout(F.relu(self.fc1(x)))
+        # x = self.pool_avg(x)
         x = self.fc2(x)
-        return x
-
-
-class uintCNN(CNN):
-    def __init__(self):
-        super().__init__(name='uint8model')
-        # Define layers with uint8 parameters
-        self.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, stride=1, padding=1, dtype=torch.uint8)
-        self.fc1 = nn.Linear(64 * 32 * 32, 10, dtype=torch.uint8)
-
-    def forward(self, x):
-        x = self.conv1(x)
-        x = F.relu(x)
-        x = x.view(x.size(0), -1)
-        x = self.fc1(x)
         return x
