@@ -4,8 +4,8 @@ from time import process_time
 import click
 # local modules
 from utils import set_check_device
-from data_operations import data_loader, performance_check
-from train import train_model
+from data_operations import data_loader
+from train import train_model, evaluate_model
 from models import save_model, SimpleCNN, TestCNN
 # create logger
 logging.basicConfig(filename='compilation_log.log', format='%(asctime)s - %(levelname)s - %(message)s',
@@ -18,23 +18,24 @@ logger.addHandler(ch)
 
 
 @click.command()
-@click.option('--model_name', type=str, default='simpleCNN', help='Name of model to run')
+@click.option('--model_name', type=str, default='test', help='Name of model to run')  # simpleCNN
 def compile_selected_cnn_model(model_name):
-    data_train, data_test, dataloader_train, dataloader_test = data_loader()
-    # if model_name == 'test':
-    #     model = TestCNN()
-    # else:
-    #     model = SimpleCNN()
+    dataloader_train, dataloader_test = data_loader()
+    if model_name == 'test':
+        model = TestCNN()
+    else:
+        model = SimpleCNN()
 
     # the reason to separate train() from model is to enable multiple models comparisons
-    # train_model(model, dataloader_train)
-    # save_model(model)
-    import torch
-    from models import CNN
-    model = CNN('simpleCNN')
-    model = torch.load('outputs/simpleCNN.pth')
-    performance_check(dataloader_test, data_test, model)
-    del data_train, data_test, dataloader_train, dataloader_test, model
+    train_model(model, dataloader_train)
+    save_model(model)
+
+    # import torch
+    # from models import CNN
+    # model = CNN('simpleCNN')
+    # model = torch.load('outputs/simpleCNN.pth')
+    evaluate_model(dataloader_test, model)
+    del dataloader_train, dataloader_test, model
 
 
 if __name__ == '__main__':
@@ -42,7 +43,7 @@ if __name__ == '__main__':
     start_time = datetime.now()
     t_start = process_time()
     logger.info('\n##########     A new process has started     ##########')
-    set_check_device()
+    # set_check_device()
     compile_selected_cnn_model()
     # finish all process and end the timer
     t_simple_cnn_stop = process_time()

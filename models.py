@@ -14,9 +14,11 @@ class CNN(nn.Module):
         super().__init__()
         # add basic attributes
         self.name = name
-        # load relevant configs from file
         self.common_attr = load_json('configs.json')['common_att']
         self.hyperparams = load_json('configs.json')[name]
+        self.model_dir = os.path.join(self.common_attr['output_path'], self.name)
+        os.makedirs(self.model_dir, exist_ok=True)
+        # load relevant configs from file
         self.num_params = self.calc_total_num_params()
         logger.info(f'Model {name} is created')
 
@@ -48,7 +50,7 @@ class uintCNN(CNN):
 
 def save_model(model, output_path=None):
     if output_path is None:
-        output_path = model.common_attr['output_path']
+        output_path = model.model_dir
     os.makedirs(output_path, exist_ok=True)
     model_path = os.path.join(output_path, model.name+'.pth')
     torch.save(model, model_path)
@@ -72,16 +74,17 @@ class SimpleCNN(CNN):
         self.conv1 = nn.Conv2d(3, 32, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
         self.conv3 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
-        self.pool = nn.MaxPool2d(2, 2)
+        self.pool_max = nn.MaxPool2d(2, 2)
+        self.pool_avg = nn.AvgPool2d(2, 2)
         # fully connected layers
         self.fc1 = nn.Linear(128 * 4 * 4, 512)
         self.fc2 = nn.Linear(512, 10)
         self.dropout = nn.Dropout(0.5)
 
     def forward(self, x):
-        x = self.pool(F.relu(self.conv1(x)))
-        x = self.pool(F.relu(self.conv2(x)))
-        x = self.pool(F.relu(self.conv3(x)))
+        x = self.pool_max(F.relu(self.conv1(x)))
+        x = self.pool_max(F.relu(self.conv2(x)))
+        x = self.pool_max(F.relu(self.conv3(x)))
         x = x.view(x.size(0), -1)
         x = self.dropout(F.relu(self.fc1(x)))
         x = self.fc2(x)
