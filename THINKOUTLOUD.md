@@ -35,7 +35,7 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 ### LEVEL 2
 
 -[ ] Optimization:
-- [ ] dropout layer
+-[ ] dropout layer
     -[ ] high accuracy 
     -[ ] a small model size
     -[ ] must contain less than 1 million parameters
@@ -84,11 +84,11 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[x] time the processes
 -[x] add logger
 -[x] add checkpoint
+-[x] validation: parameters size ≤ 1 million
+-[x] validation: inference time ≤ 20ms on a single CPU thread
+-[x] export models performances to file
 -[ ] clear objects that are no longer required
 -[ ] use/convert to uint8 for models
--[x] validation: parameters size ≤ 1 million
--[ ] validation: inference time ≤ 20ms on a single CPU thread
--[ ] export models performances to file
 
 # Completion Checklist
 -[ ] essential unit tests

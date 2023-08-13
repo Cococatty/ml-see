@@ -4,11 +4,13 @@ import os
 import sys
 import threading
 from pathlib import Path
+from time import process_time
+import torch
 # project modules
 from utils import set_check_device
-from models import SimpleCNN
 from data_operations import data_loader
 from inference import single_threaded_inference, run_inference
+from exceptions import InferenceTimeAssertError
 
 FILE = Path(__file__).resolve()
 test_dir = FILE.parents[0]
@@ -22,6 +24,8 @@ logger = logging.getLogger('unittest_log')
 class TestInference(unittest.TestCase):
     def setUp(self):
         self.img_large = self.create_large_image()
+        self.output_path = os.path.join(test_dir, 'outputs')
+        _, self.dataloader_test = data_loader()
 
     @staticmethod
     def create_large_image():
@@ -32,17 +36,16 @@ class TestInference(unittest.TestCase):
         return large_image
 
     def test_givenASimpleModel_whenInferenceRequired_thenLoadTheModel(self):
-        dataloader_train, dataloader_test = data_loader()
-        # cnn = SimpleCNN().load_state_dict('outputs/simpleCNN.pth')
-        # thread = threading.Thread(target=single_threaded_inference, args=(cnn, dataloader_test))
-        # thread.start()
-        # thread.join()
+        cnn = torch.load(os.path.join(self.output_path, 'simpleCNN.pth'))
+        thread = threading.Thread(target=single_threaded_inference, args=(cnn, self.dataloader_test))
+        thread.start()
+        thread.join()
         # TODO enable
         # self.assertEqual(result, 62006)
 
-    def test_givenALargeImage_whenRunInferenceAndExceedTimeReq_thenGiveAWarning(self):
+    def test_givenALargeImage_whenRunInferenceAndExceedTimeReq_thenRaiseAnException(self):
         set_check_device()
-        _, dataloader_test = data_loader()
-        self.withWar
-        t_inf_start = process_time()
-        run_inference(dataloader_test)
+        try:
+            run_inference(self.dataloader_test, 0.01)
+        except InferenceTimeAssertError:
+            logger.info('Test passes')

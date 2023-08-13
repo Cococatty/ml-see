@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 # local modules
 from utils import load_json
-from exceptions import ParamSizeValueError
+from exceptions import ParamSizeAssertError
 logger = logging.getLogger('process_log')
 
 
@@ -24,7 +24,7 @@ class CNN(nn.Module):
         total_params = sum(p.numel() for p in self.parameters())
         if total_params > 1000000:
             logger.error(f'Model {self.name} parameters size ({total_params}) > 1 million')
-            raise ParamSizeValueError(f'Model {self.name} parameters size ({total_params}) > 1 million')
+            raise ParamSizeAssertError(f'Model {self.name} parameters size ({total_params}) > 1 million')
         else:
             logger.info(f'Model {self.name} parameters size is {total_params}')
         return total_params
