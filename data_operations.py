@@ -1,4 +1,8 @@
+"""
+All data manipulations functions such as building data loaders and performance check
+"""
 import logging
+from datetime import datetime
 import torch
 import torchvision
 import torchvision.transforms as transforms
@@ -10,6 +14,7 @@ def data_loader(config=load_json('configs.json')):
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
     data_train = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
     data_test = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
 
@@ -28,8 +33,11 @@ def data_loader(config=load_json('configs.json')):
 
 def performance_check(dataloader_test, model):
     classes = model.common_attr['classes']
-    correct = 0
-    total = 0
+    result_sep = '\n'
+    result_str = f'{result_sep}Execution Timestamp: {datetime.now()}{result_sep}{result_sep}' \
+                 f'| model name | num of images | class_name | accuracy |{result_sep}' \
+                 f'| :---- | :---- | :---- | :---- |{result_sep}'
+    correct, total = 0, 0
     # since we're not training, we don't need to calculate the gradients for our outputs
     with torch.no_grad():
         for data in dataloader_test:
@@ -41,8 +49,9 @@ def performance_check(dataloader_test, model):
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     
-    logger.info(f'Accuracy of the {model.name} on the 10000 test images: {100 * correct // total} %')
-    
+    logger.info(f'Accuracy of model {model.name} on the 10,000 test images: {100 * correct // total}%')
+    result_str = result_str + f'|{model.name}|10,000|ALL|{100 * correct // total}%|{result_sep}'
+
     # prepare to count predictions for each class
     correct_pred = {class_name: 0 for class_name in classes}
     total_pred = {class_name: 0 for class_name in classes}
@@ -59,7 +68,14 @@ def performance_check(dataloader_test, model):
                     correct_pred[classes[label]] += 1
                 total_pred[classes[label]] += 1
 
-    # print accuracy for each class
+    # print and output accuracy for each class
     for class_name, correct_count in correct_pred.items():
         accuracy = 100 * float(correct_count) / total_pred[class_name]
-        logger.info(f'Accuracy for class: {class_name:5s} is {accuracy:.1f} %')
+        logger.info(f'Accuracy for class: {class_name:5s} is {accuracy:.1f}%')
+        result_str = result_str + f'|{model.name}|{total_pred[class_name]}|{class_name:5s}|{accuracy:.2f}%|{result_sep}'
+
+    # export performance in table format
+    result_file = model.common_attr['performance_file']
+    with open(result_file, 'a') as file:
+        file.write(result_str)
+    logger.info(f'Performance is exported to file {result_file}')

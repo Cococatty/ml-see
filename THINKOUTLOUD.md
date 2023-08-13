@@ -35,7 +35,8 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 ### LEVEL 2
 
 -[ ] Optimization:
-    -[ ]  high accuracy 
+-[ ] dropout layer
+    -[ ] high accuracy 
     -[ ] a small model size
     -[ ] must contain less than 1 million parameters
 -[ ] model performance analysis:
@@ -82,11 +83,12 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[x] modularize the entire project
 -[x] time the processes
 -[x] add logger
--[ ] add breakpoint
+-[x] add checkpoint
+-[x] validation: parameters size ≤ 1 million
+-[x] validation: inference time ≤ 20ms on a single CPU thread
+-[x] export models performances to file
 -[ ] clear objects that are no longer required
 -[ ] use/convert to uint8 for models
--[ ] validation: parameters size ≤ 1 million
--[ ] validation: inference time ≤ 20ms on a single CPU thread
 
 # Completion Checklist
 -[ ] essential unit tests
@@ -95,3 +97,9 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[ ] code format
 -[ ] sufficient documentation, docstring, comments
 -[ ] clear all items in each level
+-[ ] is checkpoint still required for training lasts less than 5min)
+
+
+# Documentation
+PEP 257 – Docstring Conventions: https://peps.python.org/pep-0257/
+

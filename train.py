@@ -1,15 +1,16 @@
 import logging
 import torch
 import torch.nn as nn
+import torch.optim as optim
+
 logger = logging.getLogger('process_log')
 
 
 def train_model(model, dataloader_train):
-    import torch.optim as optim
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=model.hyperparams['lr'], momentum=model.hyperparams['momentum'])
 
-    logger.info(f'Start to train {model.name}')
+    logger.info(f'Start training {model.name}')
 
     for epoch in range(1):  # loop over the dataset multiple times
         logger.info(f'Training epoch {epoch}')
@@ -32,12 +33,10 @@ def train_model(model, dataloader_train):
                 logger.info(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
                 running_loss = 0.0
         logger.info(f'Finished training epoch {epoch}')
-        # TODO add breakpoint
-
+        # checkpoint
+        if epoch % 2 == 0:
+            torch.save({'epoch': epoch, 'model_state_dict': model.state_dict(),
+                        'optimizer_state_dict': optimizer.state_dict(), 'loss': running_loss
+                        }, f'{model.name}_{epoch}.pt')
     logger.info(f'Finished training {model.name}')
     return model
-
-
-def load_model(model, model_path, images):
-    model.load_state_dict(torch.load(model_path))
-    outputs = model(images)

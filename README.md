@@ -42,4 +42,45 @@ venv_see/bin/python3 main.py
 ```
 ## Compiling Results
 
-# Model Performance
+
+# Models Performances Report
+
+## Dataset Details
+- Dataset: CIFAR-10
+- Number of Classes: 10
+- Total Number of Images: 60,000
+- Training Samples: 50,000
+- Validation Samples: [Number of validation samples]
+- Test Samples: 10,000
+
+## Model Architecture
+
+- Model: [Model name]
+- Architecture: [Description of model architecture]
+- Number of Parameters: [Total number of model parameters]
+
+## Training Details
+
+- Training Duration: [Training duration]
+- Optimizer: [Optimizer name]
+- Learning Rate: [Learning rate]
+- Batch Size: [Batch size]
+- Loss Function: [Loss function]
+- Training Accuracy: [Training accuracy]
+- Validation Accuracy: [Validation accuracy]
+
+## Performance Metrics
+
+- Test Accuracy: [Test accuracy]
+- Confusion Matrix: [Insert confusion matrix if applicable]
+
+
+## Inference Time
+
+- Average Inference Time: [Average inference time per image]
+- Hardware Used: [Description of hardware used]
+
+## Conclusion
+
+[Summary of performance and findings]
+

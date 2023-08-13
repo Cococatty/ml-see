@@ -1,11 +1,12 @@
 import logging
 from datetime import datetime
 from time import process_time
+import click
 # local modules
 from utils import set_check_device
 from data_operations import data_loader, performance_check
 from train import train_model
-from models import SimpleCNN
+from models import SimpleCNN, save_model
 # create logger
 logging.basicConfig(filename='compilation_log.log', format='%(asctime)s - %(levelname)s - %(message)s',
                     encoding='utf-8', level=logging.INFO)
@@ -16,12 +17,18 @@ ch.setLevel(logging.INFO)
 logger.addHandler(ch)
 
 
+@click.command()
+@click.option('--models_list', type=str, help='List of models to run')
+def compile_processes(models_list):
+    print('Test')
+
+
 def compile_simple_cnn_model():
     dataloader_train, dataloader_test = data_loader()
     cnn = SimpleCNN()
     # the reason to separate train() from model is to enable multiple models comparisons
     train_model(cnn, dataloader_train)
-    cnn.save_model()
+    save_model(cnn)
     performance_check(dataloader_test=dataloader_test, model=cnn)
 
 
@@ -36,4 +43,4 @@ if __name__ == '__main__':
     t_simple_cnn_stop = process_time()
     end_time = datetime.now()
     logger.info(f'Elapsed time for Simple CNN compilation in seconds: {t_simple_cnn_stop-t_start}')
-    logger.info('#########     Process is completed successfully     ##########\n')
+    logger.info('#########     Process completes successfully     ##########\n')
