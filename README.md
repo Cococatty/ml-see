@@ -1,3 +1,32 @@
+Table of Contents
+=================
+
+* [About this Repository](#about-this-repository)
+* [How to Setup the Running Environment](#how-to-setup-the-running-environment)
+   * [Pre-requisite/Development Environment](#pre-requisitedevelopment-environment)
+* [Set up the running environment](#set-up-the-running-environment)
+* [Available Modules to Run](#available-modules-to-run)
+   * [Model training and evaluation](#model-training-and-evaluation)
+      * [Module Outputs](#module-outputs)
+   * [Inference](#inference)
+      * [Inference Outputs](#inference-outputs)
+* [Models Performances Report](#models-performances-report)
+   * [Dataset Details](#dataset-details)
+   * [Model Architecture Discussion](#model-architecture-discussion)
+   * [Training Details](#training-details)
+   * [Performance Metrics](#performance-metrics)
+      * [SimpleCNN](#simplecnn)
+         * [Test Accuracy](#test-accuracy)
+         * [Confusion Matrix](#confusion-matrix)
+      * [SimpleCNN_GrayScale](#simplecnn_grayscale)
+         * [Test Accuracy](#test-accuracy-1)
+         * [Confusion Matrix](#confusion-matrix-1)
+   * [Inference Details](#inference-details)
+      * [SimpleCNN](#simplecnn-1)
+      * [SimpleCNN_GrayScale](#simplecnn_grayscale-1)
+      * [Hardware Used](#hardware-used)
+* [Future Planning](#future-planning)
+
 # About this Repository
 This repository discusses a CNN model development that uses CIFAR-10 data as a starting point.
 
