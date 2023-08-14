@@ -1,19 +1,19 @@
 {
-	"common_attr": {
+	"files_attr": {
 		"output_path": "./outputs",
 		"performance_file": "outputs/models_performances_tables.txt",
 		"cm_file": "confusion_matrix.txt",
-		"epoch": 1,
-		"result_sep": "\n",
-		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+		"result_sep": "\n"
 	},
+	"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
+	"n_epochs": 2,
 	"dataloader_train": {
-		"batch_size": 4,
+		"batch_size": 64,
 		"shuffle": true,
-		"num_workers": 2
+		"num_workers": 4
 	},
 	"dataloader_test": {
-		"batch_size": 4,
+		"batch_size": 64,
 		"shuffle": false,
 		"num_workers": 2
 	},
@@ -25,7 +25,7 @@
 		"lr": 0.001,
 		"momentum": 0.9
 	},
-	"uint8model": {
+	"CNNModel": {
 		"lr": 0.001,
 		"momentum": 0.9
 	}

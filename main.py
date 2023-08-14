@@ -17,24 +17,24 @@ logger.addHandler(ch)
 
 
 @click.command()
+@click.option('--mode', type=str, default='compile', help='Compiling mode, chose from test, compile')
 @click.option('--model_name', type=str, default='test', help='Name of model to run')  # simpleCNN
-def compile_selected_cnn_model(model_name):
-    dataloader_train, dataloader_test = data_loader()
-    if model_name == 'test':
+def compile_selected_cnn_model(mode, model_name):
+    if mode == 'test':
         model = TestCNN()
     else:
-        model = SimpleCNN()
-
-    # separate train() from model to enable multiple models comparisons
-    train_model(model, dataloader_train)
-    save_model(model)
-
-    # import torch
-    # from models import CNN
-    # model = CNN('simpleCNN')
-    # model = torch.load('outputs/simpleCNN.pth')
-    evaluate_model(dataloader_test, model)
-    del dataloader_train, dataloader_test, model
+        dataloader_train, dataloader_test = data_loader()
+        if model_name == 'simpleCNN':
+            model = SimpleCNN()
+        else:
+            model = TestCNN()
+        # separate train() from model to enable multiple models comparisons
+        train_model(model, dataloader_train)
+        save_model(model)
+        del dataloader_train
+        
+        evaluate_model(dataloader_test, model)
+        del dataloader_test, model
 
 
 if __name__ == '__main__':
@@ -43,7 +43,5 @@ if __name__ == '__main__':
     logger.info('\n##########     A new process has started     ##########')
     set_check_device()
     compile_selected_cnn_model()
-    # finish all process and end the timer
-    t_simple_cnn_stop = process_time()
-    logger.info(f'Elapsed time for Simple CNN compilation in seconds: {t_simple_cnn_stop-t_start}')
-    logger.info('##########     Process completes successfully     ##########\n')
+    logger.info(f'Elapsed time for Simple CNN compilation in seconds: {process_time()-t_start}')
+    logger.info(f'##########     Process completes successfully     ##########\n')

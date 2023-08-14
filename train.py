@@ -1,6 +1,7 @@
 import logging
 import os.path
 from datetime import datetime
+from time import process_time
 import numpy as np
 import torch
 import torch.nn as nn
@@ -15,11 +16,11 @@ def train_model(model, dataloader_train):
     optimizer = optim.SGD(model.parameters(), lr=model.hyperparams['lr'], momentum=model.hyperparams['momentum'])
 
     logger.info(f'Start training model {model.name}')
-
-    for epoch in range(model.common_attr['epoch']):  # loop over the dataset multiple times
+    t_start = process_time()
+    for epoch in range(model.n_epochs):  # loop over the dataset multiple times
         logger.info(f'Training epoch {epoch}')
         running_loss = 0.0
-
+        t_ep_start = process_time()
         for i, data in enumerate(dataloader_train, 0):
             # get the inputs; data is a list of [inputs, labels]
             inputs, labels = data
@@ -30,27 +31,26 @@ def train_model(model, dataloader_train):
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
-
             # print statistics
             running_loss += loss.item()
             if i % 2000 == 1999:  # print every 2000 mini-batches
                 logger.info(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
                 running_loss = 0.0
-        logger.info(f'Finished training epoch {epoch}')
+        logger.info(f'Finished training epoch {epoch}, duration is {(process_time()-t_ep_start):.2f} seconds')
         # save checkpoint every 2nd epoch
         if epoch % 2 == 0:
             torch.save({'epoch': epoch, 'model_state_dict': model.state_dict(),
                         'optimizer_state_dict': optimizer.state_dict(), 'loss': running_loss
-                        }, f'{model.model_dir}_{epoch}.pt')
-    logger.info(f'Finished training {model.name}')
+                        }, f'{model.model_dir}/checkpoint_{epoch}.pt')
+    logger.info(f'Finished training {model.name}, duration is {(process_time()-t_start):.2f} seconds')
     return model
 
 
 def evaluate_model(dataloader_test, model):
     correct, incorrect, total = 0, 0, 0
     predicted_labels, true_labels = [], []
-    classes = model.common_attr['classes']
-    result_sep = model.common_attr['result_sep']
+    classes = model.classes
+    result_sep = model.files_attr['result_sep']
     result_str = f'{result_sep}Execution Timestamp: {datetime.now()}{result_sep}{result_sep}' \
                  f'| model name | num of images | class_name | accuracy |{result_sep}' \
                  f'| :---- | :---- | :---- | :---- |{result_sep}'
@@ -104,9 +104,10 @@ def evaluate_model(dataloader_test, model):
 
     # export performance results to file
     result_str = result_str + result_sep + str(model) + result_sep
+    result_str = result_str + result_sep + str(model.files_attr) + result_sep + str(model.hyperparams) + result_sep
     # export performance in table format
-    result_file = model.common_attr['performance_file']
-    cm_file = os.path.join(model.model_dir, model.common_attr['cm_file'])
+    result_file = model.files_attr['performance_file']
+    cm_file = os.path.join(model.model_dir, model.files_attr['cm_file'])
     with open(result_file, 'a') as file:
         file.write(result_str)
     # export confusion metrics to file

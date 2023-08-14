@@ -10,13 +10,18 @@ from utils import load_json
 logger = logging.getLogger('process_log')
 
 
+class GrayscaleTransform(object):
+    def __call__(self, img):
+        return img.convert('L')
+
+
 def data_loader(config=load_json('configs.json')):
     transform = transforms.Compose([
-        # transforms.Grayscale(num_output_channels=1),
+        GrayscaleTransform(),
         # transforms.RandomCrop(size=16),
         transforms.ToTensor(),
-        # transforms.Normalize((0.5,), (0.5,))])
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+        transforms.Normalize((0.5,), (0.5,))])
+        # transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
     data_train = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
     data_test = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
