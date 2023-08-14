@@ -35,16 +35,16 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 ### LEVEL 2
 
 -[ ] Optimization:
--[ ] dropout layer
+-[x] dropout layer
     -[ ] high accuracy 
-    -[ ] a small model size
-    -[ ] must contain less than 1 million parameters
--[ ] model performance analysis:
-    -[ ] confusion matrix
-    -[ ] breakdown accuracy for each label/class
--[ ] report inference time of the model in milliseconds per image per CPU
--[ ] report number of parameters of the model
--[ ] Bonus: Measurements are computable dynamically when running the test script
+    -[x] a small model size
+    -[x] must contain less than 1 million parameters
+-[x] model performance analysis:
+    -[x] confusion matrix
+    -[x] breakdown accuracy for each label/class
+-[x] report inference time of the model in milliseconds per image per CPU
+-[x] report number of parameters of the model
+-[x] Bonus: Measurements are computable dynamically when running the test script
 
 ### LEVEL 3
 - Show your work: Document your thinking process, findings and experiments.

@@ -8,7 +8,7 @@ from data_operations import data_loader
 from train import train_model, evaluate_model
 from models import save_model, SimpleCNN, TestCNN
 # create logger
-logging.basicConfig(filename='compilation_log.log', format='%(asctime)s - %(levelname)s - %(message)s',
+logging.basicConfig(filename='log_compilation.log', format='%(asctime)s - %(levelname)s - %(message)s',
                     encoding='utf-8', level=logging.INFO)
 logger = logging.getLogger('process_log')
 # create console handler and set level to debug

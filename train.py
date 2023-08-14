@@ -110,6 +110,6 @@ def evaluate_model(dataloader_test, model):
     with open(result_file, 'a') as file:
         file.write(result_str)
     # export confusion metrics to file
-    # TODO enhancement of writing metrics to performance file
+    # TODO improvement: writing metrics to performance file
     np.savetxt(cm_file, cm_overall_classes, fmt='%d')
     logger.info(f'Performance is exported to file {result_file}\nConfusion metrics are exported to file {cm_file}')

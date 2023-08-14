@@ -1,10 +1,10 @@
 {
 	"common_att": {
 		"output_path": "./outputs",
-		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
 		"performance_file": "outputs/models_performances_tables.txt",
 		"cm_file": "confusion_matrix.txt",
-		"result_sep": "\n"
+		"result_sep": "\n",
+		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 	},
 	"dataloader_train": {
 		"batch_size": 4,

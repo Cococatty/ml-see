@@ -12,7 +12,7 @@ from utils import set_check_device
 from data_operations import data_loader
 from exceptions import InferenceTimeAssertError
 # create logger
-logging.basicConfig(filename='inference_log.log', format='%(asctime)s - %(levelname)s - %(message)s',
+logging.basicConfig(filename='log_inference.log', format='%(asctime)s - %(levelname)s - %(message)s',
                     encoding='utf-8', level=logging.INFO)
 logger = logging.getLogger('inference_log')
 # create console handler and set level to debug
