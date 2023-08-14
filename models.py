@@ -36,22 +36,6 @@ class CNN(nn.Module):
         return total_params
 
 
-class uintCNN(CNN):
-    # TODO use int8
-    def __init__(self):
-        super().__init__(name='uint8model')
-        # Define layers with uint8 parameters
-        self.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, stride=1, padding=1, dtype=torch.uint8)
-        self.fc1 = nn.Linear(64 * 32 * 32, 10, dtype=torch.uint8)
-
-    def forward(self, x):
-        x = self.conv1(x)
-        x = F.relu(x)
-        x = x.view(x.size(0), -1)
-        x = self.fc1(x)
-        return x
-
-
 def save_model(model, output_path=None):
     if output_path is None:
         output_path = model.model_dir
@@ -59,16 +43,6 @@ def save_model(model, output_path=None):
     model_path = os.path.join(output_path, model.name+'.pth')
     torch.save(model, model_path)
     logger.info(f'{model.name} model is saved to {model_path}')
-
-
-# Convert the model parameters to uint8
-def convert_to_uint8(model):
-    # TODO fix
-    # new_model = OriginalModel()  # Create a new instance of the model
-    model.load_state_dict(model.state_dict())  # Load parameters from the original model
-    for param in model.parameters():
-        param.data = param.data.to(torch.uint8)  # Convert parameter data to uint8
-    return model
 
 
 class SimpleCNN(CNN):
