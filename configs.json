@@ -17,15 +17,15 @@
 		"shuffle": false,
 		"num_workers": 2
 	},
-	"simpleCNN": {
+	"SimpleCNN": {
 		"lr": 0.001,
 		"momentum": 0.9
 	},
-	"testCNN": {
+	"TestCNN": {
 		"lr": 0.001,
 		"momentum": 0.9
 	},
-	"CNNModel": {
+	"CNNWithDropout": {
 		"lr": 0.001,
 		"momentum": 0.9
 	}

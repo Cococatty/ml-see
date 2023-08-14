@@ -16,12 +16,18 @@ class GrayscaleTransform(object):
 
 
 def data_loader(config=load_json('configs.json')):
+    # n_channel = 1
     transform = transforms.Compose([
         GrayscaleTransform(),
         # transforms.RandomCrop(size=16),
         transforms.ToTensor(),
         transforms.Normalize((0.5,), (0.5,))])
-        # transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+    # # n_channel = 3    
+    # transform = transforms.Compose([
+    #     # transforms.RandomCrop(size=16),
+    #     transforms.ToTensor(),
+    #     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
 
     data_train = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
     data_test = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)

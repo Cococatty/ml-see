@@ -71,34 +71,10 @@ def convert_to_uint8(model):
     return model
 
 
-class SimpleCNN_source(CNN):
-    def __init__(self):
-        super().__init__(name='simpleCNN')
-        # feature extraction
-        self.conv1 = nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, padding=1)
-        self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1)
-        self.conv3 = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, padding=1)
-        self.pool_max = nn.MaxPool2d(kernel_size=2, stride=2)
-        self.pool_avg = nn.AvgPool2d(kernel_size=2, stride=2)
-        self.dropout = nn.Dropout(p=0.5)
-        # fully connected layers
-        self.fc1 = nn.Linear(in_features=128*4*4, out_features=512)
-        self.fc2 = nn.Linear(in_features=512, out_features=10)
-        self.num_params = self.calc_total_num_params()
-
-    def forward(self, x):
-        x = self.pool_max(F.relu(self.conv1(x)))
-        x = self.pool_max(F.relu(self.conv2(x)))
-        x = self.pool_max(F.relu(self.conv3(x)))
-        x = x.view(x.size(0), -1)
-        x = self.dropout(F.relu(self.fc1(x)))
-        x = self.fc2(x)
-        return x
-
-
 class SimpleCNN(CNN):
+    """The current best-performance model"""
     def __init__(self):
-        super().__init__(name='simpleCNN')
+        super().__init__(name='SimpleCNN')
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, padding=1)
         self.pool_max = nn.MaxPool2d(kernel_size=2, stride=2)
@@ -107,7 +83,7 @@ class SimpleCNN(CNN):
         # fully connected layers        
         self.fc1 = nn.Linear(in_features=32*8*8, out_features=128)
         self.fc2 = nn.Linear(in_features=128, out_features=10)
-        self.num_params = self.calc_total_num_params()        
+        self.num_params = self.calc_total_num_params()
 
     def forward(self, x):
         # x = self.pool_max(F.relu(self.conv1(x)))
@@ -124,7 +100,7 @@ class SimpleCNN(CNN):
 
 class TestCNN(CNN):
     def __init__(self):
-        super().__init__(name='testCNN')
+        super().__init__(name='TestCNN')
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, padding=1)
         self.conv3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1)

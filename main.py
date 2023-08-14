@@ -5,7 +5,7 @@ import click
 from utils import set_check_device
 from data_operations import data_loader
 from train import train_model, evaluate_model
-from models import save_model, SimpleCNN, TestCNN
+from models import save_model, SimpleCNN, TestCNN, CNNWithDropout
 # create logger
 logging.basicConfig(filename='log_compilation.log', format='%(asctime)s - %(levelname)s - %(message)s',
                     encoding='utf-8', level=logging.INFO)
@@ -21,13 +21,14 @@ logger.addHandler(ch)
 @click.option('--model_name', type=str, default='test', help='Name of model to run')  # simpleCNN
 def compile_selected_cnn_model(mode, model_name):
     if mode == 'test':
-        model = TestCNN()
+        # model = TestCNN()
+        model = CNNWithDropout()
     else:
         dataloader_train, dataloader_test = data_loader()
-        if model_name == 'simpleCNN':
+        if model_name == 'SimpleCNN':
             model = SimpleCNN()
         else:
-            model = TestCNN()
+            model = CNNWithDropout()
         # separate train() from model to enable multiple models comparisons
         train_model(model, dataloader_train)
         save_model(model)
