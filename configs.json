@@ -13,19 +13,15 @@
 		"num_workers": 4
 	},
 	"dataloader_test": {
-		"batch_size": 64,
-		"shuffle": false,
+		"batch_size": 8,
+		"shuffle": true,
 		"num_workers": 2
 	},
 	"SimpleCNN": {
-		"lr": 0.001,
+		"lr": 0.005,
 		"momentum": 0.9
 	},
 	"TestCNN": {
-		"lr": 0.001,
-		"momentum": 0.9
-	},
-	"CNNWithDropout": {
 		"lr": 0.001,
 		"momentum": 0.9
 	}
