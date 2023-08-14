@@ -14,7 +14,7 @@ class CNN(nn.Module):
         super().__init__()
         # add basic attributes
         self.name = name
-        self.common_attr = load_json('configs.json')['common_att']
+        self.common_attr = load_json('configs.json')['common_attr']
         self.hyperparams = load_json('configs.json')[name]
         self.model_dir = os.path.join(self.common_attr['output_path'], self.name)
         os.makedirs(self.model_dir, exist_ok=True)

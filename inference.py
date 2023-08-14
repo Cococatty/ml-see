@@ -2,7 +2,6 @@
 The script to run inference for the test dataset
 """
 import logging
-from datetime import datetime
 from time import process_time
 import click
 import threading
@@ -32,19 +31,19 @@ def run_inference(model_file, avg_sec, input_data):
     thread.join()
 
 
-def model_inference(model, dataloder_data, avg_sec=20):
+def model_inference(model, dataloader_data, avg_sec=20):
     # evaluation mode has no dropout, batch normalization, etc.
     model.eval()
 
     with torch.no_grad():
         start_time = process_time()
-        for i, data in enumerate(dataloder_data, 0):
+        for i, data in enumerate(dataloader_data, 0):
             inputs, labels = data
             _ = model(inputs)
         end_time = process_time()
         elapsed_time = end_time - start_time
         # criteria: average inference time per image ≤ 20ms on a single CPU thread
-        inference_time_ms = elapsed_time / len(dataloder_data) * 1000   # total_time / num_of_images * convert to ms
+        inference_time_ms = elapsed_time / len(dataloader_data) * 1000   # total_time / num_of_images * convert to ms
 
         if inference_time_ms > avg_sec:
             raise InferenceTimeAssertError(f'Average inference time per image: {inference_time_ms:.4f}ms, '

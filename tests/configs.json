@@ -1,5 +1,5 @@
 {
-	"common_att": {
+	"common_attr": {
 		"output_path": "./outputs",
 		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 	},

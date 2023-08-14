@@ -14,9 +14,9 @@ def train_model(model, dataloader_train):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=model.hyperparams['lr'], momentum=model.hyperparams['momentum'])
 
-    logger.info(f'Start training {model.name}')
+    logger.info(f'Start training model {model.name}')
 
-    for epoch in range(1):  # loop over the dataset multiple times
+    for epoch in range(model.common_attr['epoch']):  # loop over the dataset multiple times
         logger.info(f'Training epoch {epoch}')
         running_loss = 0.0
 
@@ -37,7 +37,7 @@ def train_model(model, dataloader_train):
                 logger.info(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
                 running_loss = 0.0
         logger.info(f'Finished training epoch {epoch}')
-        # checkpoint
+        # save checkpoint every 2nd epoch
         if epoch % 2 == 0:
             torch.save({'epoch': epoch, 'model_state_dict': model.state_dict(),
                         'optimizer_state_dict': optimizer.state_dict(), 'loss': running_loss
@@ -61,7 +61,7 @@ def evaluate_model(dataloader_test, model):
             images, labels = data
             # calculate outputs by running images through the model
             outputs = model(images)
-            # the class with the highest energy is what we choose as prediction
+            # the class with the highest energy is chosen as final prediction
             _, predicted = torch.max(outputs.data, 1)
             # prepare for performance statistics
             total += labels.size(0)

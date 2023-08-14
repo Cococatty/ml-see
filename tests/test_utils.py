@@ -19,4 +19,4 @@ class TestUtilities(unittest.TestCase):
     def test_givenAJSONFile_whenJSONDataIsRequired_thenLoadJSONData(self):
         expected_result = './outputs'
         json_data = load_json(os.path.join(project_dir, 'configs.json'))
-        self.assertEqual(json_data['common_att']['output_path'], expected_result)
+        self.assertEqual(json_data['common_attr']['output_path'], expected_result)
