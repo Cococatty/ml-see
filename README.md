@@ -100,13 +100,9 @@ While researching these architects, I have noticed Max Pooling is used more ofte
 - Batch Size: 8
 - Epoch Size: 6
 - Loss Function: CrossEntropyLoss
-
-### SimpleCNN
-- Training Duration: 2250.66 seconds/37.5 minutes (average on 8 runs) on Dell, 240.53 seconds/4 minutes (average on 3 runs) on a borrowed MacBook Pro with M1 chip
-- Training Accuracy: %
-
-### SimpleCNN_GrayScale
-  - SimpleCNN_GrayScale: 545,098
+- Training Duration:
+  - SimpleCNN: 2250.66 seconds/37.5 minutes (average on 8 runs) on Dell, 240.53 seconds/4 minutes (average on 3 runs) on a borrowed MacBook Pro with M1 chip
+  - SimpleCNN_GrayScale: 3125.87 seconds/52.08 minutes (average on 8 runs) on Dell, 316.65 seconds/5.28 minutes (average on 3 runs) on a borrowed MacBook Pro with M1 chip
 
 ## Performance Metrics
 ### SimpleCNN
@@ -166,13 +162,19 @@ Refer to confusion_metrics_by_classes/SimpleCNN_GrayScale directory for confusio
 Dell Inspiron 15, 2015
 
 # Future Planning
-3 months time period is granted to develop this model, here are few things I would do:
+If 3 months time period is granted to develop this model, here are few things I would do:
+- Specify a need, a use or a purpose of this project/model. Are we using this as a starting point of some product, feature or enhancement?
+- Brainstorm in the company and take in thoughts from team members who have and have not been involved 
 - Dive in further into the CIFAR-10, even CIFAR-100 datasets, understand their characteristics.
+- Exploratory data analysis on CIFAR-10
 - Small image research. Given images from CIFAR-10 are of 32 x 32 in size, therefore, the number of pixels are much less compared to usual images. 
-1. Areas of future research
-	
-2. Techniques of future research
-3. Potential Experiments
-4. Potential model improvements
-   - 
-5. 
+- Transformations. The relevant transformations to be used for low pixel, or small size images
+- Draw relevant plots such as loss, training performance etc during development
+- Reinforcement learning. I would dedicate about a week time to experiment how RL would treat CIFAR-10 and mark down my thoughts and plan for future use when the right opportunity arises.
+- Talk to other experts in the domain and take note of their experience; have a wider search as developments done and shared for CIFAR-10.
+
+Potential model improvements
+- Enable the second dropout layer to further reduce the size and observe if accuracy would drop massively
+- Try to use a mix of max and average pooling, while playing around with the kernel size
+- Convert the model to uint8 at export
+- Classes cat and bird usually have the lowest accuracies, investigate the reasons, such as is it because the object size in image is extremely small? Is it because of the colour?
