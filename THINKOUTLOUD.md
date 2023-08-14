@@ -28,16 +28,16 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[x] a public git repo
 -[x] A python script(s) which trains a model from scratch and saves it to a file
 -[x] A python script(s) which tests the generated model
--[ ] documentation:
+-[x] documentation:
   - scripts running instructions 
   - describes the chosen model and structure, and the result of the model, i.e. several measures of accuracy and performance
 
 ### LEVEL 2
 
--[ ] Optimization:
+-[x] Optimization:
     -[x] try dropout layer
-    -[ ] high accuracy -- aim at 70%
-    -[ ] use/convert to uint8 for models
+    -[x] high accuracy -- aim at 70%
+    -[ ] consider use/convert to uint8 for models
     -[x] a small model size
     -[x] must contain less than 1 million parameters
 -[x] model performance analysis:
@@ -49,10 +49,10 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 
 ### LEVEL 3
 - Show your work: Document your thinking process, findings and experiments.
--[ ] Imagine if you had 3 months to work on this model: 
-  -[ ] Describe areas of future research, techniques you might implement, experiments you might run, 
-  -[ ] specific areas where you believe the model could be improved.
-- Reference any academic research that you have consulted when working on this test.
+-[x] Imagine if you had 3 months to work on this model: 
+  -[x] Describe areas of future research, techniques you might implement, experiments you might run, 
+  -[x] specific areas where you believe the model could be improved.
+-[x] Reference any academic research that you have consulted when working on this test.
 
 ### Rough Delivery Plan
 1. -[x] Determine and set up the environment and dependencies, Sat
@@ -63,12 +63,12 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 6. -[x] Design the model architecture, Sun
 7. -[x] Build the desired model, Sun
 8. -[x] Compile the model and ensure it works (level 1 completes), Sun
-9. -[ ] Optimization (level 2 starts), Sun
+9. -[x] Optimization (level 2 starts), Sun
 10. -[x] Detailed performance analysis, Sun
-11. -[ ] Finalize documentation, Mon
-12. -[ ] Clear all To-Do items, Mon
-13. -[ ] Clear all Checklist items, Mon
-14. -[ ] Submission, Mon 
+11. -[x] Finalize documentation, Mon
+12. -[x] Clear all To-Do items, Mon
+13. -[x] Clear all Checklist items, Mon
+14. -[x] Submission, Mon 
 
 ### Available Resources
 - got questions: Julian
@@ -88,20 +88,19 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[x] validation: parameters size ≤ 1 million
 -[x] validation: inference time ≤ 20ms on a single CPU thread
 -[x] export models performances to file
--[ ] clear objects that are no longer required
+-[x] clear objects that are no longer required
 
 
 # Completion Checklist
--[ ] gh - README table of content
--[ ] essential unit tests
--[ ] remove unused dependencies
--[ ] no comment-out code
--[ ] code format
--[ ] sufficient documentation, docstring, comments
--[ ] clear all items in each level
--[ ] is checkpoint still required for training lasts less than 5min)
+-[x] gh - README table of content
+-[x] essential unit tests
+-[x] remove unused dependencies
+-[x] no comment-out code
+-[x] code format
+-[x] sufficient documentation, docstring, comments
+-[x] clear all items in each level
+-[x] is checkpoint still required for training lasts less than 5min)?
 
 
 # Documentation
-PEP 257 – Docstring Conventions: https://peps.python.org/pep-0257/
-
+- PEP 257 – Docstring Conventions: https://peps.python.org/pep-0257/
