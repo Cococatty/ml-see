@@ -6,7 +6,7 @@
 		"result_sep": "\n"
 	},
 	"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
-	"n_epochs": 6,
+	"n_epochs": 8,
 	"dataloader_train": {
 		"batch_size": 8,
 		"shuffle": true,
@@ -21,8 +21,8 @@
 		"lr": 0.005,
 		"momentum": 0.9
 	},
-	"TestCNN": {
-		"lr": 0.001,
+	"SimpleCNN_GrayScale": {
+		"lr": 0.005,
 		"momentum": 0.9
 	}
 }

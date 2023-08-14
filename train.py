@@ -1,3 +1,6 @@
+"""
+This file contains all training related functions used in this project
+"""
 import logging
 import os.path
 from datetime import datetime
@@ -104,7 +107,7 @@ def evaluate_model(dataloader_test, model):
 
     # export performance results to file
     result_str = result_str + result_sep + str(model) + result_sep
-    result_str = result_str + result_sep + str(model.files_attr) + result_sep + str(model.hyperparams) + result_sep
+    result_str = result_str + result_sep + model.get_setup_in_str() + result_sep
     # export performance in table format
     result_file = model.files_attr['performance_file']
     cm_file = os.path.join(model.model_dir, model.files_attr['cm_file'])
