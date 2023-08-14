@@ -16,10 +16,8 @@ class GrayscaleTransform(object):
 
 
 def data_loader(config=load_json('configs.json')):
-    # n_channel = 1
     transform = transforms.Compose([
         GrayscaleTransform(),
-        # transforms.RandomCrop(size=16),
         transforms.ToTensor(),
         transforms.Normalize((0.5,), (0.5,))])
 

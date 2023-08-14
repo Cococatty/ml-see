@@ -14,7 +14,7 @@
 	},
 	"dataloader_test": {
 		"batch_size": 8,
-		"shuffle": true,
+		"shuffle": false,
 		"num_workers": 2
 	},
 	"SimpleCNN": {
