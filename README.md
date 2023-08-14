@@ -50,6 +50,8 @@ venv_see/bin/python3 main.py
 	- a new directory named by the chosen model, which contains checkpoint files, saved model file, overall confusion matrix and confusion metrics by classes
 
 
+### Inference
+
 # Models Performances Report
 
 ## Dataset Details
@@ -57,14 +59,13 @@ venv_see/bin/python3 main.py
 - Number of Classes: 10
 - Total Number of Images: 60,000
 - Training Samples: 50,000
-- Validation Samples: [Number of validation samples]
 - Test Samples: 10,000
 
 ## Model Architecture
 
-- Model: [Model name]
-- Architecture: [Description of model architecture]
-- Number of Parameters: [Total number of model parameters]
+- Model: SimpleCNN
+- Architecture: A simple CNN model that is developed locally on a Dell Inspiron 15 (2015) with CPU.
+- Number of Parameters: 268,362
 
 Models performances comparison fetch from https://www.researchgate.net/figure/Ball-chart-reporting-the-Top-1-and-Top-5-accuracy-vs-computational-complexity-Top-1-and_fig1_328509150
 
@@ -86,13 +87,12 @@ VGG16 architecture, fetch from https://neurohive.io/en/popular-networks/vgg16/
 
 ## Training Details
 
-- Training Duration: [Training duration]
-- Optimizer: [Optimizer name]
-- Learning Rate: [Learning rate]
+- Training Duration: 2250.66 seconds/37.5 minutes (average on 8 runs) on Dell, 240.53 seconds/4 minutes (average on 3 runs) on a borrowed MacBook Pro with M1 chip
+- Optimizer: SGD - for its computational efficiency
+- Learning Rate: 0.001
 - Batch Size: [Batch size]
-- Loss Function: [Loss function]
+- Loss Function: CrossEntropyLoss
 - Training Accuracy: [Training accuracy]
-- Validation Accuracy: [Validation accuracy]
 
 ## Performance Metrics
 
@@ -104,8 +104,3 @@ VGG16 architecture, fetch from https://neurohive.io/en/popular-networks/vgg16/
 
 - Average Inference Time: [Average inference time per image]
 - Hardware Used: [Description of hardware used]
-
-## Conclusion
-
-[Summary of performance and findings]
-
