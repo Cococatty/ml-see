@@ -1,21 +1,27 @@
 {
-	"common_att": {
+	"files_attr": {
 		"output_path": "./outputs",
-		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
-		"training_output_file": "outputs/training_result.txt",
-		"performance_file": "outputs/models_performances_tables.txt"
+		"performance_file": "outputs/models_performances_tables.txt",
+		"cm_file": "confusion_matrix.txt",
+		"result_sep": "\n"
 	},
+	"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
+	"n_epochs": 6,
 	"dataloader_train": {
-		"batch_size": 4,
+		"batch_size": 8,
 		"shuffle": true,
-		"num_workers": 2
+		"num_workers": 4
 	},
 	"dataloader_test": {
-		"batch_size": 4,
+		"batch_size": 8,
 		"shuffle": false,
 		"num_workers": 2
 	},
-	"simpleCNN": {
+	"SimpleCNN": {
+		"lr": 0.001,
+		"momentum": 0.9
+	},
+	"SimpleCNN_GrayScale": {
 		"lr": 0.001,
 		"momentum": 0.9
 	}

@@ -1,8 +1,12 @@
 {
-	"common_att": {
+	"files_attr": {
 		"output_path": "./outputs",
-		"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+		"performance_file": "outputs/models_performances_tables.txt",
+		"cm_file": "confusion_matrix.txt",
+		"result_sep": "\n"
 	},
+	"classes": ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
+	"epoch": 2,
 	"dataloader_train": {
 		"batch_size": 4,
 		"shuffle": true,

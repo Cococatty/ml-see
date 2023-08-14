@@ -35,16 +35,17 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 ### LEVEL 2
 
 -[ ] Optimization:
--[ ] dropout layer
-    -[ ] high accuracy 
-    -[ ] a small model size
-    -[ ] must contain less than 1 million parameters
--[ ] model performance analysis:
-    -[ ] confusion matrix
-    -[ ] breakdown accuracy for each label/class
--[ ] report inference time of the model in milliseconds per image per CPU
--[ ] report number of parameters of the model
--[ ] Bonus: Measurements are computable dynamically when running the test script
+    -[x] try dropout layer
+    -[ ] high accuracy -- aim at 70%
+    -[ ] use/convert to uint8 for models
+    -[x] a small model size
+    -[x] must contain less than 1 million parameters
+-[x] model performance analysis:
+    -[x] confusion matrix
+    -[x] breakdown accuracy for each label/class
+-[x] report inference time of the model in milliseconds per image per CPU
+-[x] report number of parameters of the model
+-[x] Bonus: Measurements are computable dynamically when running the test script
 
 ### LEVEL 3
 - Show your work: Document your thinking process, findings and experiments.
@@ -58,12 +59,12 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 2. -[x] Set up possibly required modules, Sat
 3. -[x] Start documenting, Sat
 4. -[x] First draft, Sat
-5. -[ ] Research and determine the model architecture, Sun
-6. -[ ] Design the model architecture, Sun
-7. -[ ] Build the desired model, Sun
-8. -[ ] Compile the model and ensure it works (level 1 completes), Sun
+5. -[x] Research and determine the model architecture, Sun
+6. -[x] Design the model architecture, Sun
+7. -[x] Build the desired model, Sun
+8. -[x] Compile the model and ensure it works (level 1 completes), Sun
 9. -[ ] Optimization (level 2 starts), Sun
-10. -[ ] Detailed performance analysis, Sun
+10. -[x] Detailed performance analysis, Sun
 11. -[ ] Finalize documentation, Mon
 12. -[ ] Clear all To-Do items, Mon
 13. -[ ] Clear all Checklist items, Mon
@@ -71,8 +72,8 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 
 ### Available Resources
 - got questions: Julian
-- report writing: README Markdown
-- code compiling: local dev env, with a newly created GitHub repo
+- report writing: README, Markdown
+- code compiling: local dev env, in a newly created GitHub repo
 
 # About the Model
 1. Start with something simple
@@ -88,9 +89,10 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[x] validation: inference time ≤ 20ms on a single CPU thread
 -[x] export models performances to file
 -[ ] clear objects that are no longer required
--[ ] use/convert to uint8 for models
+
 
 # Completion Checklist
+-[ ] gh - README table of content
 -[ ] essential unit tests
 -[ ] remove unused dependencies
 -[ ] no comment-out code
