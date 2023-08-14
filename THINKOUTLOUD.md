@@ -25,34 +25,34 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 
 ### LEVEL 1
 
--[x] a public git repo
--[x] A python script(s) which trains a model from scratch and saves it to a file
--[x] A python script(s) which tests the generated model
--[x] documentation:
+1. -[x] a public git repo
+1. -[x] A python script(s) which trains a model from scratch and saves it to a file
+1. -[x] A python script(s) which tests the generated model
+1. -[x] documentation:
   - scripts running instructions 
   - describes the chosen model and structure, and the result of the model, i.e. several measures of accuracy and performance
 
 ### LEVEL 2
 
--[x] Optimization:
-    -[x] try dropout layer
-    -[x] high accuracy -- aim at 70%
-    -[ ] consider use/convert to uint8 for models
-    -[x] a small model size
-    -[x] must contain less than 1 million parameters
--[x] model performance analysis:
-    -[x] confusion matrix
-    -[x] breakdown accuracy for each label/class
--[x] report inference time of the model in milliseconds per image per CPU
--[x] report number of parameters of the model
--[x] Bonus: Measurements are computable dynamically when running the test script
+1. -[x] Optimization:
+    1. -[x] try dropout layer
+    1. -[x] high accuracy -- aim at 70%
+    1. -[ ] consider use/convert to uint8 for models
+    1. -[x] a small model size
+    1. -[x] must contain less than 1 million parameters
+1. -[x] model performance analysis:
+    1. -[x] confusion matrix
+    1. -[x] breakdown accuracy for each label/class
+1. -[x] report inference time of the model in milliseconds per image per CPU
+1. -[x] report number of parameters of the model
+1. -[x] Bonus: Measurements are computable dynamically when running the test script
 
 ### LEVEL 3
 - Show your work: Document your thinking process, findings and experiments.
--[x] Imagine if you had 3 months to work on this model: 
-  -[x] Describe areas of future research, techniques you might implement, experiments you might run, 
-  -[x] specific areas where you believe the model could be improved.
--[x] Reference any academic research that you have consulted when working on this test.
+1. -[x] Imagine if you had 3 months to work on this model: 
+  1. -[x] Describe areas of future research, techniques you might implement, experiments you might run, 
+  1. -[x] specific areas where you believe the model could be improved.
+1. -[x] Reference any academic research that you have consulted when working on this test.
 
 ### Rough Delivery Plan
 1. -[x] Determine and set up the environment and dependencies, Sat
@@ -80,26 +80,26 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 2. Research academic paper
 
 # Project To-Do
--[x] simple to start with
--[x] modularize the entire project
--[x] time the processes
--[x] add logger
--[x] add checkpoint
--[x] validation: parameters size ≤ 1 million
--[x] validation: inference time ≤ 20ms on a single CPU thread
--[x] export models performances to file
--[x] clear objects that are no longer required
+1. -[x] simple to start with
+1. -[x] modularize the entire project
+1. -[x] time the processes
+1. -[x] add logger
+1. -[x] add checkpoint
+1. -[x] validation: parameters size ≤ 1 million
+1. -[x] validation: inference time ≤ 20ms on a single CPU thread
+1. -[x] export models performances to file
+1. -[x] clear objects that are no longer required
 
 
 # Completion Checklist
--[x] gh - README table of content
--[x] essential unit tests
--[x] remove unused dependencies
--[x] no comment-out code
--[x] code format
--[x] sufficient documentation, docstring, comments
--[x] clear all items in each level
--[x] is checkpoint still required for training lasts less than 5min)?
+1. -[x] gh - README table of content
+1. -[x] essential unit tests
+1. -[x] remove unused dependencies
+1. -[x] no comment-out code
+1. -[x] code format
+1. -[x] sufficient documentation, docstring, comments
+1. -[x] clear all items in each level
+1. -[x] is checkpoint still required for training lasts less than 5min)?
 
 
 # Documentation
