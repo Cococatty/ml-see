@@ -18,17 +18,16 @@ logger.addHandler(ch)
 
 @click.command()
 @click.option('--mode', type=str, default='compile', help='Compiling mode, chose from test, compile')
-@click.option('--model_name', type=str, default='test', help='Name of model to run')  # simpleCNN
+@click.option('--model_name', type=str, default='SimpleCNN', help='Name of model to run')  # simpleCNN
 def compile_selected_cnn_model(mode, model_name):
     if mode == 'test':
-        # model = TestCNN()
-        model = CNNWithDropout()
+        model = TestCNN()
     else:
         dataloader_train, dataloader_test = data_loader()
         if model_name == 'SimpleCNN':
             model = SimpleCNN()
         else:
-            model = CNNWithDropout()
+            model = TestCNN()
         # separate train() from model to enable multiple models comparisons
         train_model(model, dataloader_train)
         save_model(model)
