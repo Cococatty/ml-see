@@ -36,8 +36,8 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 
 -[ ] Optimization:
     -[x] try dropout layer
-    -[ ] high accuracy -- aim at 70%
-    -[ ] use/convert to uint8 for models
+    -[x] high accuracy -- aim at 70%
+    -[ ] consider use/convert to uint8 for models
     -[x] a small model size
     -[x] must contain less than 1 million parameters
 -[x] model performance analysis:
@@ -52,7 +52,7 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 -[ ] Imagine if you had 3 months to work on this model: 
   -[ ] Describe areas of future research, techniques you might implement, experiments you might run, 
   -[ ] specific areas where you believe the model could be improved.
-- Reference any academic research that you have consulted when working on this test.
+-[x] Reference any academic research that you have consulted when working on this test.
 
 ### Rough Delivery Plan
 1. -[x] Determine and set up the environment and dependencies, Sat
@@ -63,9 +63,9 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 6. -[x] Design the model architecture, Sun
 7. -[x] Build the desired model, Sun
 8. -[x] Compile the model and ensure it works (level 1 completes), Sun
-9. -[ ] Optimization (level 2 starts), Sun
+9. -[x] Optimization (level 2 starts), Sun
 10. -[x] Detailed performance analysis, Sun
-11. -[ ] Finalize documentation, Mon
+11. -[x] Finalize documentation, Mon
 12. -[ ] Clear all To-Do items, Mon
 13. -[ ] Clear all Checklist items, Mon
 14. -[ ] Submission, Mon 
@@ -92,16 +92,15 @@ official CIFAR-10 website: https://www.cs.toronto.edu/~kriz/cifar.html
 
 
 # Completion Checklist
--[ ] gh - README table of content
+-[x] gh - README table of content
 -[ ] essential unit tests
 -[ ] remove unused dependencies
 -[ ] no comment-out code
--[ ] code format
+-[x] code format
 -[ ] sufficient documentation, docstring, comments
--[ ] clear all items in each level
--[ ] is checkpoint still required for training lasts less than 5min)
+-[x] clear all items in each level
+-[x] is checkpoint still required for training lasts less than 5min)?
 
 
 # Documentation
-PEP 257 – Docstring Conventions: https://peps.python.org/pep-0257/
-
+- PEP 257 – Docstring Conventions: https://peps.python.org/pep-0257/
