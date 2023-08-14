@@ -1,3 +1,6 @@
+"""
+This file contains all models and model related functions used in this project
+"""
 import logging
 import os
 import torch
@@ -10,6 +13,9 @@ logger = logging.getLogger('process_log')
 
 
 class CNN(nn.Module):
+    """This is the CNN template for this project, it has some basic features and functions 
+    that are not available in nn.Module
+    """
     def __init__(self, name):
         super().__init__()
         # add basic attributes
@@ -35,6 +41,9 @@ class CNN(nn.Module):
             logger.info(f'Model {self.name} parameters size is {total_params}')
         return total_params
 
+    def get_setup_in_str(self):
+        return str(load_json('configs.json'))
+
 
 def save_model(model, output_path=None):
     if output_path is None:
@@ -45,53 +54,45 @@ def save_model(model, output_path=None):
     logger.info(f'{model.name} model is saved to {model_path}')
 
 
-class SimpleCNN(CNN):
-    """The current best-performance model"""
+class SimpleCNN_GrayScale(CNN):
+    """This model takes Grayscale images (i.e only 1 colour channel)"""
     def __init__(self):
-        super().__init__(name='SimpleCNN')
+        super().__init__(name='SimpleCNN_GrayScale')
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, padding=1)
         self.pool_max = nn.MaxPool2d(kernel_size=2, stride=2)
-        self.pool_avg = nn.AvgPool2d(kernel_size=2, stride=2)
-        self.dropout = nn.Dropout(p=0.4)
+        self.dropout = nn.Dropout(p=0.2)
         # fully connected layers        
         self.fc1 = nn.Linear(in_features=32*8*8, out_features=128)
         self.fc2 = nn.Linear(in_features=128, out_features=10)
         self.num_params = self.calc_total_num_params()
 
     def forward(self, x):
-        # x = self.pool_max(F.relu(self.conv1(x)))
-        x = F.relu(self.conv1(x))
-        x = self.pool_max(x)
-        x = F.relu(self.conv2(x))
-        x = self.pool_max(x)
+        x = self.pool_max(F.relu(self.conv1(x)))
+        x = self.pool_max(F.relu(self.conv2(x)))
         x = x.view(x.size(0), -1)
         x = F.relu(self.fc1(x))
-        # x = self.dropout(F.relu(self.fc1(x)))
         x = self.fc2(x)
         return x
 
 
-class TestCNN(CNN):
+class SimpleCNN(CNN):
+    """This model takes RGB images (i.e 3 colour channels)"""
     def __init__(self):
-        super().__init__(name='TestCNN')
-        self.conv1 = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, padding=1)
-        self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, padding=1)
-        self.conv3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1)
+        super().__init__(name='SimpleCNN')
+        self.conv1 = nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, padding=1)
+        self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1)
         self.pool_max = nn.MaxPool2d(kernel_size=2, stride=2)
-        self.pool_avg = nn.AvgPool2d(kernel_size=2, stride=2)
-        self.dropout = nn.Dropout(p=0.4)
+        self.dropout = nn.Dropout(p=0.2)
         # fully connected layers        
-        self.fc1 = nn.Linear(in_features=64*4*4, out_features=128)
+        self.fc1 = nn.Linear(in_features=64*8*8, out_features=128)
         self.fc2 = nn.Linear(in_features=128, out_features=10)
-        self.num_params = self.calc_total_num_params()        
+        self.num_params = self.calc_total_num_params()
 
     def forward(self, x):
         x = self.pool_max(F.relu(self.conv1(x)))
         x = self.pool_max(F.relu(self.conv2(x)))
-        x = self.pool_max(F.relu(self.conv3(x)))
         x = x.view(x.size(0), -1)
-        # x = self.dropout(F.relu(self.fc1(x)))
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
         return x

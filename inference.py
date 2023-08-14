@@ -44,7 +44,6 @@ def model_inference(model, avg_sec=20):
             _ = model(inputs)
         infer_end = process_time()
         elapsed_time = infer_end - infer_start
-
         # criteria: average inference time per image ≤ 20ms on a single CPU thread
         inference_time_ms = elapsed_time / len(dataloader_data) * 1000   # total_time / num_of_images * convert to ms
         if inference_time_ms > avg_sec:

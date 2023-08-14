@@ -1,3 +1,6 @@
+"""
+This file contains all utility functions used in this project
+"""
 import logging
 import os
 import matplotlib.pyplot as plt
