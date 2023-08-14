@@ -66,6 +66,7 @@ class SimpleCNN_GrayScale(CNN):
         self.fc1 = nn.Linear(in_features=32*8*8, out_features=128)
         self.fc2 = nn.Linear(in_features=128, out_features=10)
         self.num_params = self.calc_total_num_params()
+        self.is_grayscale = True
 
     def forward(self, x):
         x = self.pool_max(F.relu(self.conv1(x)))
@@ -88,6 +89,7 @@ class SimpleCNN(CNN):
         self.fc1 = nn.Linear(in_features=64*8*8, out_features=128)
         self.fc2 = nn.Linear(in_features=128, out_features=10)
         self.num_params = self.calc_total_num_params()
+        self.is_grayscale = False
 
     def forward(self, x):
         x = self.pool_max(F.relu(self.conv1(x)))

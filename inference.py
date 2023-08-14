@@ -22,7 +22,7 @@ logger.addHandler(ch)
 
 
 @click.command()
-@click.option('--model_file', type=str, default='outputs/simpleCNN/simpleCNN.pth', help='Model file to run')
+@click.option('--model_file', type=str, default='outputs/SimpleCNN/SimpleCNN.pth', help='Model file to run')
 @click.option('--avg_sec', type=int, default=20, help='Average inference time threshold per image in ms')
 @click.option('--n_thread', type=int, default=1, help='Number of thresholds to run')
 def run_inference(model_file, avg_sec, n_thread):
@@ -34,7 +34,10 @@ def run_inference(model_file, avg_sec, n_thread):
 
 
 def model_inference(model, avg_sec=20):
-    _, dataloader_data = data_loader()
+    if model.is_grayscale:
+        _, dataloader_data = data_loader(n_channel=1)
+    else:
+        _, dataloader_data = data_loader(n_channel=3)
     # set model to evaluation mode
     model.eval()
     with torch.no_grad():
