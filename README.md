@@ -40,7 +40,14 @@ OR
 ```
 venv_see/bin/python3 main.py
 ```
-## Compiling Results
+## Compiling Outputs
+### Training and Evaluation
+- log files
+	- log_compilation.log: generated from training and evaluating the chosen model
+	- log_inference.log: generated from running the inference against the chosen model
+- in outputs directory:
+	- models_performances_tables.txt: this text file contains performance raw outputs, such as accuracy of each class, model architecture used at the time (given no other versioning tools are used in this project), configurations and hyperparameters used
+	- a new directory named by the chosen model, which contains checkpoint files, saved model file, overall confusion matrix and confusion metrics by classes
 
 
 # Models Performances Report
