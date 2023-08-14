@@ -5,7 +5,7 @@ import click
 from utils import set_check_device
 from data_operations import data_loader
 from train import train_model, evaluate_model
-from models import save_model, SimpleCNN, TestCNN, CNNWithDropout
+from models import save_model, SimpleCNN, TestCNN
 # create logger
 logging.basicConfig(filename='log_compilation.log', format='%(asctime)s - %(levelname)s - %(message)s',
                     encoding='utf-8', level=logging.INFO)
